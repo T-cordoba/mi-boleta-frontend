@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 16px;
   padding: 24px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .header {
@@ -64,6 +64,7 @@
 
 .tableArea {
   flex: 1;
+  min-height: 194px;
   overflow: hidden;
   background: var(--bg-card);
   backdrop-filter: blur(20px);

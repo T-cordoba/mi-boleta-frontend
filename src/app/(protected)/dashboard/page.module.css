@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 24px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .header {
@@ -45,16 +45,13 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  flex: 1;
-  min-height: 0;
 }
 
 .charts {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  flex: 1;
-  min-height: 0;
+  min-height: 280px;
 }
 
 /* CTA quick-action */
@@ -131,18 +128,13 @@
 @media (max-width: 768px) {
   .page {
     padding: 16px;
-    overflow-y: auto;
-    height: auto;
-    min-height: 100%;
-  }
-  .bottom {
-    flex: none;
   }
   .stats {
     grid-template-columns: 1fr 1fr;
   }
   .charts {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 }
 
