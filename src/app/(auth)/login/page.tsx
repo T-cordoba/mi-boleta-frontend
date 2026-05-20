@@ -50,7 +50,7 @@ export default function LoginPage() {
       <div className={styles.bg} />
       <div className={styles.card}>
         <Link href="/" className={styles.icon} aria-label="Ir al inicio">
-          <Ticket size={28} color="var(--ticket)" />
+          <Ticket size={28} className="ticket-icon" />
         </Link>
         <h1 className={styles.title}>Bienvenido</h1>
         <p className={styles.subtitle}>Inicia sesión para gestionar tus boletas</p>

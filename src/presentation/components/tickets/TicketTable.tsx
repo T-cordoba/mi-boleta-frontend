@@ -44,7 +44,7 @@ export function TicketTable({ tickets, loading, wrapperRef, onView, onEdit, onDe
   if (tickets.length === 0) {
     return (
       <div className={styles.empty}>
-        <TicketIcon size={40} color="var(--ticket)" />
+        <TicketIcon size={40} className="ticket-icon" />
         <p>No se encontraron boletas</p>
         <span>Ajusta los filtros o registra una nueva</span>
       </div>
