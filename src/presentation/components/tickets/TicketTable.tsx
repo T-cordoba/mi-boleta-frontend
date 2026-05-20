@@ -10,7 +10,7 @@ import styles from './TicketTable.module.css'
 interface Props {
   tickets: Ticket[]
   loading: boolean
-  wrapperRef?: RefObject<HTMLDivElement>
+  wrapperRef?: RefObject<HTMLDivElement | null>
   onView: (ticket: Ticket) => void
   onEdit: (ticket: Ticket) => void
   onDelete: (ticket: Ticket) => void
