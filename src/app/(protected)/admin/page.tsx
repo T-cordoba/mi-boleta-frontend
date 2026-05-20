@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ShieldCheck } from 'lucide-react'
 import { Pagination } from '@/presentation/components/ui/Pagination'
 import { TicketTable } from '@/presentation/components/tickets/TicketTable'
@@ -12,6 +12,7 @@ import styles from './page.module.css'
 
 export default function AdminPage() {
   const { result, filters, loading, fetch, applyFilters } = useAdmin()
+  const tableRef = useRef<HTMLDivElement>(null)
   const [viewTicket, setViewTicket] = useState<Ticket | null>(null)
 
   useEffect(() => { fetch() }, [fetch])
@@ -37,7 +38,7 @@ export default function AdminPage() {
         <TicketTable
           tickets={result.tickets}
           loading={loading}
-          page={filters.page}
+          wrapperRef={tableRef}
           onView={setViewTicket}
           onEdit={() => {}}
           onDelete={() => {}}
@@ -45,7 +46,7 @@ export default function AdminPage() {
         />
       </div>
 
-      <Pagination meta={result.meta} onPage={(page) => applyFilters({ page })} />
+      <Pagination meta={result.meta} onPage={(page) => { tableRef.current?.scrollTo({ top: 0 }); applyFilters({ page }) }} />
 
       <TicketDetailModal ticket={viewTicket} onClose={() => setViewTicket(null)} />
     </div>

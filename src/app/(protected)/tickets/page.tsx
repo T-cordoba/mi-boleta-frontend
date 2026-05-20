@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Plus } from 'lucide-react'
 import { Button } from '@/presentation/components/ui/Button'
 import { Modal } from '@/presentation/components/ui/Modal'
@@ -18,6 +18,7 @@ import styles from './page.module.css'
 export default function TicketsPage() {
   const { result, filters, loading, fetch, applyFilters, create, update, remove } = useTickets()
 
+  const tableRef = useRef<HTMLDivElement>(null)
   const [createOpen, setCreateOpen] = useState(false)
   const [editTicket, setEditTicket] = useState<Ticket | null>(null)
   const [viewTicket, setViewTicket] = useState<Ticket | null>(null)
@@ -67,7 +68,7 @@ export default function TicketsPage() {
         <TicketTable
           tickets={result.tickets}
           loading={loading}
-          page={filters.page}
+          wrapperRef={tableRef}
           onView={setViewTicket}
           onEdit={setEditTicket}
           onDelete={setDeleteTicket}
@@ -75,7 +76,7 @@ export default function TicketsPage() {
       </div>
 
       <div className="anim-fade-up" style={{ animationDelay: '0.22s' }}>
-        <Pagination meta={result.meta} onPage={(page) => applyFilters({ page })} />
+        <Pagination meta={result.meta} onPage={(page) => { tableRef.current?.scrollTo({ top: 0 }); applyFilters({ page }) }} />
       </div>
 
       {/* Crear — con protección dirty */}
