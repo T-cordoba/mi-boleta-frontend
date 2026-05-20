@@ -37,6 +37,7 @@ export default function AdminPage() {
         <TicketTable
           tickets={result.tickets}
           loading={loading}
+          page={filters.page}
           onView={setViewTicket}
           onEdit={() => {}}
           onDelete={() => {}}

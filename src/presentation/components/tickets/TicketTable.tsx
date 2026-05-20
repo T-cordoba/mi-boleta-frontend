@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import { Eye, Pencil, Trash2 } from 'lucide-react'
 import { Ticket } from '@/domain/entities/ticket'
 import { StatusBadge, GameTypeBadge } from '@/presentation/components/ui/Badge'
@@ -9,6 +10,7 @@ import styles from './TicketTable.module.css'
 interface Props {
   tickets: Ticket[]
   loading: boolean
+  page?: number
   onView: (ticket: Ticket) => void
   onEdit: (ticket: Ticket) => void
   onDelete: (ticket: Ticket) => void
@@ -28,7 +30,13 @@ function formatAmount(amount?: number | null) {
   return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount)
 }
 
-export function TicketTable({ tickets, loading, onView, onEdit, onDelete, showOwner }: Props) {
+export function TicketTable({ tickets, loading, page, onView, onEdit, onDelete, showOwner }: Props) {
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    wrapperRef.current?.scrollTo({ top: 0 })
+  }, [page])
+
   if (loading) {
     return (
       <div className={styles.loadingWrapper}>
@@ -50,7 +58,7 @@ export function TicketTable({ tickets, loading, onView, onEdit, onDelete, showOw
   }
 
   return (
-    <div className={styles.tableWrapper}>
+    <div className={styles.tableWrapper} ref={wrapperRef}>
       <table className={styles.table}>
         <thead>
           <tr>

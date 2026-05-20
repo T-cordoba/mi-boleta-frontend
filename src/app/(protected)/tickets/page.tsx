@@ -67,6 +67,7 @@ export default function TicketsPage() {
         <TicketTable
           tickets={result.tickets}
           loading={loading}
+          page={filters.page}
           onView={setViewTicket}
           onEdit={setEditTicket}
           onDelete={setDeleteTicket}
