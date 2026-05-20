@@ -70,4 +70,4 @@ Abre [http://localhost:3000](http://localhost:3000).
 
 ## Backend
 
-API REST en [`mi-boleta-api`](https://github.com/T-cordoba/mi-boleta-api). Autenticación por JWT almacenado en cookie.
+API REST en [`mi-boleta-api`](https://github.com/saurmo/mi-boleta-api). Autenticación por JWT almacenado en cookie.
