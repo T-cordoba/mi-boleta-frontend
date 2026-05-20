@@ -33,7 +33,7 @@ export default function LandingPage() {
       {/* Navbar */}
       <header className={styles.nav}>
         <div className={styles.navBrand}>
-          <Ticket size={24} className="ticket-icon" />
+          <span style={{ color: 'var(--ticket)', display: 'flex' }}><Ticket size={24} /></span>
           <span className={styles.navName}>MiBoleta</span>
         </div>
         <div className={styles.navActions}>

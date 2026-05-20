@@ -130,10 +130,6 @@ textarea {
   background: var(--primary);
 }
 
-.ticket-icon {
-  color: var(--ticket);
-}
-
 .glass {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
