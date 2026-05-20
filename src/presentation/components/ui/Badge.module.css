@@ -1,0 +1,55 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* Status */
+.pendiente {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border-color: var(--warning-border);
+}
+.ganado {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+.perdido {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+
+/* Game types */
+.loteria {
+  background: rgba(129, 140, 248, 0.12);
+  color: var(--type-loteria);
+  border-color: rgba(129, 140, 248, 0.25);
+}
+.rifa {
+  background: rgba(167, 139, 250, 0.12);
+  color: var(--type-rifa);
+  border-color: rgba(167, 139, 250, 0.25);
+}
+.sorteo {
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--type-sorteo);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+.boleta {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--type-boleta);
+  border-color: rgba(52, 211, 153, 0.25);
+}
+.juego {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--type-juego);
+  border-color: rgba(148, 163, 184, 0.2);
+}
