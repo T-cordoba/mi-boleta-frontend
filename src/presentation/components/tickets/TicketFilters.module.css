@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.wrapper > *:first-child {
+  flex: 1;
+  min-width: 200px;
+}
