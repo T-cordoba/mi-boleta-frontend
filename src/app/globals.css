@@ -16,6 +16,9 @@
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-focus: rgba(99, 102, 241, 0.6);
 
+  /* Ticket accent */
+  --ticket: #f43f5e;
+
   /* Brand */
   --primary: #6366f1;
   --primary-hover: #4f46e5;

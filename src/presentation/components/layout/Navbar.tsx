@@ -40,7 +40,7 @@ export function Navbar() {
     <>
       <nav className={styles.navbar}>
         <div className={styles.brand}>
-          <Ticket size={22} color="#f43f5e" />
+          <Ticket size={22} color="var(--ticket)" />
           <span className={styles.brandName}>MiBoleta</span>
         </div>
 
