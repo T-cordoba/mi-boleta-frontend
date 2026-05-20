@@ -81,6 +81,14 @@ export function Navbar() {
           {open && (
             <div className={styles.dropdown}>
               <div className={styles.dropdownHeader}>
+                <div className={styles.dropMobileInfo}>
+                  <span className={styles.dropName}>{user?.name}</span>
+                  {isAdmin && (
+                    <span className={styles.dropRole}>
+                      <Shield size={10} /> Admin
+                    </span>
+                  )}
+                </div>
                 <p className={styles.dropEmail}>{user?.email}</p>
               </div>
               <button className={styles.dropItem} onClick={() => { setOpen(false); logout() }}>
