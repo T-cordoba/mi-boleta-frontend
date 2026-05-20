@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import styles from './Modal.module.css'
 
@@ -21,7 +22,7 @@ export function Modal({ open, onClose, title, children, size = 'md' }: Props) {
 
   if (!open) return null
 
-  return (
+  return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       <div
         className={`${styles.modal} ${styles[size]}`}
@@ -35,6 +36,7 @@ export function Modal({ open, onClose, title, children, size = 'md' }: Props) {
         </div>
         <div className={styles.body}>{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
