@@ -164,8 +164,8 @@
 
 .dropMobileInfo {
   display: none;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  gap: 3px;
   margin-bottom: 4px;
 }
 
