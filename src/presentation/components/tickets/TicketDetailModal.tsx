@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Hash, MapPin, DollarSign, FileText, Tag, Clock } from 'lucide-react'
+import { Calendar, Hash, MapPin, DollarSign, FileText, Tag, Clock, User } from 'lucide-react'
 import { Modal } from '@/presentation/components/ui/Modal'
 import { StatusBadge, GameTypeBadge } from '@/presentation/components/ui/Badge'
 import { Ticket } from '@/domain/entities/ticket'
@@ -71,7 +71,7 @@ export function TicketDetailModal({ ticket, onClose }: Props) {
           <DetailRow icon={<Clock size={14} />} label="Registrado el" value={formatDate(ticket.createdAt)} />
           {ticket.owner && (
             <DetailRow
-              icon={<span>👤</span>}
+              icon={<User size={14} />}
               label="Propietario"
               value={`${ticket.owner.name} (${ticket.owner.email})`}
             />
