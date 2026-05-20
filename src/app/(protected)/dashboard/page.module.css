@@ -129,10 +129,37 @@
 }
 
 @media (max-width: 768px) {
+  .page {
+    padding: 16px;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100%;
+  }
+  .bottom {
+    flex: none;
+  }
   .stats {
     grid-template-columns: 1fr 1fr;
   }
   .charts {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 12px;
+    gap: 12px;
+  }
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .ctaArrow {
+    display: none;
   }
 }

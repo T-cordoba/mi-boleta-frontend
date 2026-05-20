@@ -1,5 +1,5 @@
 .page {
-  height: 100vh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,12 +244,32 @@
 @media (max-width: 900px) {
   .features {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px 60px;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
+  .nav {
+    padding: 16px 20px;
+  }
+  .hero {
+    padding: 48px 20px 40px;
+  }
+  .heroSubtitle {
+    font-size: 15px;
+    max-width: 100%;
+  }
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
   .features {
     grid-template-columns: 1fr;
+    padding: 0 16px 48px;
+    gap: 12px;
   }
   .heroTitle {
     font-size: 32px;

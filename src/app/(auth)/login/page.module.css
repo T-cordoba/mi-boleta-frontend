@@ -1,5 +1,5 @@
 .page {
-  height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,4 +120,16 @@
 
 .link:hover {
   color: var(--primary-hover);
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  .card {
+    padding: 28px 20px;
+    border-radius: var(--radius-xl);
+  }
 }
