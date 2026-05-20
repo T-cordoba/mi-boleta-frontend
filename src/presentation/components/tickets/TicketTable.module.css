@@ -109,7 +109,7 @@
 }
 
 .emptyIcon {
-  font-size: 40px;
+  display: flex;
 }
 
 .empty p {

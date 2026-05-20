@@ -1,7 +1,7 @@
 'use client'
 
 import { RefObject } from 'react'
-import { Eye, Pencil, Trash2 } from 'lucide-react'
+import { Eye, Pencil, Trash2, Ticket as TicketIcon } from 'lucide-react'
 import { Ticket } from '@/domain/entities/ticket'
 import { StatusBadge, GameTypeBadge } from '@/presentation/components/ui/Badge'
 import { Button } from '@/presentation/components/ui/Button'
@@ -44,7 +44,7 @@ export function TicketTable({ tickets, loading, wrapperRef, onView, onEdit, onDe
   if (tickets.length === 0) {
     return (
       <div className={styles.empty}>
-        <span className={styles.emptyIcon}>🎟</span>
+        <TicketIcon size={40} color="#f43f5e" />
         <p>No se encontraron boletas</p>
         <span>Ajusta los filtros o registra una nueva</span>
       </div>
