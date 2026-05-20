@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MiBoleta — Frontend
 
-## Getting Started
+Aplicación web para registrar y organizar boletas de rifas, loterías y sorteos. Nunca más pierdas rastro de un número ganador.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Recharts** — gráficos de dashboard
+- **React Toastify** — notificaciones
+- **Lucide React** — íconos
+- **js-cookie** — manejo de token JWT
+
+## Arquitectura
+
+```
+src/
+├── app/                        # Rutas Next.js
+│   ├── (auth)/                 # login, register (público)
+│   ├── (protected)/            # dashboard, tickets, admin (requiere auth)
+│   ├── layout.tsx              # Root layout con AuthProvider y Toast
+│   └── page.tsx                # Landing page
+├── domain/
+│   └── entities/               # Ticket, User
+├── infrastructure/
+│   ├── api/client.ts           # Axios con interceptor JWT
+│   └── repositories/           # auth.repository, ticket.repository
+├── application/
+│   ├── services/               # auth.service, ticket.service
+│   └── hooks/                  # useDashboard, useTickets, useAdmin
+├── presentation/
+│   ├── components/
+│   │   ├── ui/                 # Primitivos: Button, Input, Modal, Badge…
+│   │   ├── layout/             # AppLayout, Navbar
+│   │   ├── dashboard/          # StatsCard, GameTypeChart, StatusChart
+│   │   └── tickets/            # TicketTable, TicketForm, TicketFilters…
+│   └── providers/
+│       └── AuthProvider.tsx
+└── middleware.ts               # Protección de rutas
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuración
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Descripción |
+|---|---|
+| `NEXT_PUBLIC_API_URL` | URL base del backend (sin slash final) |
 
-## Learn More
+## Desarrollo
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Comando | Acción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción |
+| `npm run start` | Servir build de producción |
+| `npm run lint` | Lint con ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+API REST en [`mi-boleta-api`](https://github.com/T-cordoba/mi-boleta-api). Autenticación por JWT almacenado en cookie.
