@@ -68,7 +68,7 @@ export function TicketTable({ tickets, loading, wrapperRef, onView, onEdit, onDe
         </thead>
         <tbody>
           {tickets.map((ticket) => (
-            <tr key={ticket.id} className={styles.row}>
+            <tr key={ticket.id} className={styles.row} onClick={() => onView(ticket)}>
               <td className={styles.titleCell}>{ticket.title}</td>
               <td><GameTypeBadge gameType={ticket.gameType} /></td>
               <td className={styles.mono}>{ticket.gameNumber ?? '—'}</td>
@@ -81,7 +81,7 @@ export function TicketTable({ tickets, loading, wrapperRef, onView, onEdit, onDe
                 </td>
               )}
               <td><StatusBadge status={ticket.status} /></td>
-              <td>
+              <td onClick={(e) => e.stopPropagation()}>
                 <div className={styles.actions}>
                   <Button variant="ghost" size="sm" onClick={() => onView(ticket)} icon={<Eye size={14} />} />
                   {!showOwner && (

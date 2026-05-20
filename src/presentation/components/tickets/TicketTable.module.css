@@ -32,6 +32,7 @@
 .row {
   border-bottom: 1px solid var(--border-subtle);
   transition: background var(--transition);
+  cursor: pointer;
 }
 
 .row:hover {
