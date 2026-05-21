@@ -36,7 +36,7 @@ export function TicketTable({ tickets, loading, pageSize = 10, wrapperRef, onVie
     return (
       <div className={styles.loadingWrapper}>
         {Array.from({ length: pageSize }).map((_, i) => (
-          <div key={i} className={styles.skeletonRow} style={{ animationDelay: `${i * 0.1}s` }} />
+          <div key={i} className={styles.skeletonRow} />
         ))}
       </div>
     )
