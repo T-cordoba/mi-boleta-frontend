@@ -1,47 +1,36 @@
 import { ticketRepository } from '@/infrastructure/repositories/ticket.repository'
-import {
-  Ticket,
-  TicketFilters,
-  CreateTicketDto,
-  UpdateTicketDto,
-  PaginationMeta,
-} from '@/domain/entities/ticket'
+import { ITicketRepository, TicketsResult } from '@/domain/repositories/ITicketRepository'
+import { Ticket, TicketFilters, CreateTicketDto, UpdateTicketDto } from '@/domain/entities/ticket'
 
-export interface TicketsResult {
-  tickets: Ticket[]
-  meta: PaginationMeta
-}
+export type { TicketsResult }
 
 export const ticketService = {
   async getTickets(filters: Partial<TicketFilters>, signal?: AbortSignal): Promise<TicketsResult> {
-    const res = await ticketRepository.getAll(filters, signal)
-    return { tickets: res.data, meta: res.meta }
+    return ticketRepository.getAll(filters, signal)
   },
 
   async getTicket(id: string): Promise<Ticket> {
-    const res = await ticketRepository.getById(id)
-    return res.data
+    return ticketRepository.getById(id)
   },
 
   async createTicket(dto: CreateTicketDto): Promise<Ticket> {
-    const res = await ticketRepository.create(dto)
-    return res.data
+    return ticketRepository.create(dto)
   },
 
   async updateTicket(id: string, dto: UpdateTicketDto): Promise<Ticket> {
-    const res = await ticketRepository.update(id, dto)
-    return res.data
+    return ticketRepository.update(id, dto)
   },
 
   async deleteTicket(id: string): Promise<void> {
-    await ticketRepository.delete(id)
+    return ticketRepository.delete(id)
   },
 
   async getAdminTickets(
     filters: Partial<TicketFilters> & { userId?: string },
     signal?: AbortSignal,
   ): Promise<TicketsResult> {
-    const res = await ticketRepository.getAllAdmin(filters, signal)
-    return { tickets: res.data, meta: res.meta }
+    return ticketRepository.getAllAdmin(filters, signal)
   },
 }
+
+export type TicketServiceDeps = { ticketRepository: ITicketRepository }

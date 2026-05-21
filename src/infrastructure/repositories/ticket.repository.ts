@@ -6,6 +6,7 @@ import {
   UpdateTicketDto,
   PaginationMeta,
 } from '@/domain/entities/ticket'
+import { ITicketRepository, TicketsResult } from '@/domain/repositories/ITicketRepository'
 
 interface TicketsResponse {
   data: Ticket[]
@@ -27,19 +28,36 @@ function buildQuery(filters: Partial<TicketFilters>): string {
   return q ? `?${q}` : ''
 }
 
-export const ticketRepository = {
-  getAll: (filters: Partial<TicketFilters>, signal?: AbortSignal) =>
-    api.get<TicketsResponse>(`/tickets${buildQuery(filters)}`, { signal }),
+export const ticketRepository: ITicketRepository = {
+  async getAll(filters: Partial<TicketFilters>, signal?: AbortSignal): Promise<TicketsResult> {
+    const res = await api.get<TicketsResponse>(`/tickets${buildQuery(filters)}`, { signal })
+    return { tickets: res.data, meta: res.meta }
+  },
 
-  getById: (id: string) => api.get<TicketResponse>(`/tickets/${id}`),
+  async getById(id: string): Promise<Ticket> {
+    const res = await api.get<TicketResponse>(`/tickets/${id}`)
+    return res.data
+  },
 
-  create: (dto: CreateTicketDto) => api.post<TicketResponse>('/tickets', dto),
+  async create(dto: CreateTicketDto): Promise<Ticket> {
+    const res = await api.post<TicketResponse>('/tickets', dto)
+    return res.data
+  },
 
-  update: (id: string, dto: UpdateTicketDto) =>
-    api.put<TicketResponse>(`/tickets/${id}`, dto),
+  async update(id: string, dto: UpdateTicketDto): Promise<Ticket> {
+    const res = await api.put<TicketResponse>(`/tickets/${id}`, dto)
+    return res.data
+  },
 
-  delete: (id: string) => api.delete<void>(`/tickets/${id}`),
+  async delete(id: string): Promise<void> {
+    await api.delete<void>(`/tickets/${id}`)
+  },
 
-  getAllAdmin: (filters: Partial<TicketFilters> & { userId?: string }, signal?: AbortSignal) =>
-    api.get<TicketsResponse>(`/admin/tickets${buildQuery(filters)}`, { signal }),
+  async getAllAdmin(
+    filters: Partial<TicketFilters> & { userId?: string },
+    signal?: AbortSignal,
+  ): Promise<TicketsResult> {
+    const res = await api.get<TicketsResponse>(`/admin/tickets${buildQuery(filters)}`, { signal })
+    return { tickets: res.data, meta: res.meta }
+  },
 }

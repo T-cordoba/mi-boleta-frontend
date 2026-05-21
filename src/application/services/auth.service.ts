@@ -7,16 +7,14 @@ const COOKIE_OPTS = { expires: 1, sameSite: 'strict' as const }
 
 export const authService = {
   async login(email: string, password: string): Promise<User> {
-    const res = await authRepository.login(email, password)
-    const { token, user } = res.data
+    const { token, user } = await authRepository.login(email, password)
     Cookies.set('token', token, COOKIE_OPTS)
     Cookies.set('user', JSON.stringify(user), COOKIE_OPTS)
     return user
   },
 
   async register(name: string, email: string, password: string): Promise<User> {
-    const res = await authRepository.register(name, email, password)
-    return res.data
+    return authRepository.register(name, email, password)
   },
 
   logout(): void {
