@@ -14,7 +14,11 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(() => authService.getCurrentUser())
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    setUser(authService.getCurrentUser())
+  }, [])
 
   function logout() {
     authService.logout()
