@@ -60,8 +60,8 @@ export function TicketFilters({ filters, onChange }: Props) {
       {hasFilters && (
         <Button
           variant="ghost"
-          size="sm"
           icon={<X size={14} />}
+          className={styles.clearBtn}
           onClick={() => onChange({ status: '', gameType: '', q: '', page: 1 })}
         >
           Limpiar
