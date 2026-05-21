@@ -17,7 +17,7 @@ export interface DashboardStats {
 
 export function useDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const fetch = useCallback(async () => {
     setLoading(true)

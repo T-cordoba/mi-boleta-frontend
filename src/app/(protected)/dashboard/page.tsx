@@ -58,7 +58,15 @@ export default function DashboardPage() {
         />
       </div>
 
-      {!loading && stats?.total === 0 ? (
+      {loading ? (
+        <div className={`${styles.bottom} stagger`}>
+          <div className={`${styles.charts} anim-fade-up`}>
+            <div className={styles.skeletonChart} />
+            <div className={styles.skeletonChart} />
+          </div>
+          <div className={styles.skeletonCta} />
+        </div>
+      ) : stats?.total === 0 ? (
         <div className={`${styles.empty} anim-fade-up`}>
           <div className={styles.emptyIcon}>
             <TicketX size={36} />
