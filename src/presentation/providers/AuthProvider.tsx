@@ -14,15 +14,10 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-
-  useEffect(() => {
-    setUser(authService.getCurrentUser())
-  }, [])
+  const [user, setUser] = useState<User | null>(() => authService.getCurrentUser())
 
   function logout() {
     authService.logout()
-    setUser(null)
     window.location.href = '/'
   }
 
