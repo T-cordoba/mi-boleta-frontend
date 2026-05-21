@@ -122,6 +122,12 @@
   color: var(--primary-hover);
 }
 
+.themeToggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
 @media (max-width: 480px) {
   .page {
     padding: 16px;

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { Input } from '@/presentation/components/ui/Input'
 import { Button } from '@/presentation/components/ui/Button'
 import { authService } from '@/application/services/auth.service'
+import { ThemeToggle } from '@/presentation/components/ui/ThemeToggle'
 import styles from '../login/page.module.css'
 
 export default function RegisterPage() {
@@ -50,6 +51,7 @@ export default function RegisterPage() {
   return (
     <div className={styles.page}>
       <div className={styles.bg} />
+      <div className={styles.themeToggle}><ThemeToggle /></div>
       <div className={styles.card}>
         <Link href="/" className={styles.icon} aria-label="Ir al inicio">
           <span style={{ color: 'var(--ticket)', display: 'flex' }}><Ticket size={28} /></span>
