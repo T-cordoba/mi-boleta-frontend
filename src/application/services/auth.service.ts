@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import { authRepository } from '@/infrastructure/repositories/auth.repository'
+import { decodeJwt } from '@/infrastructure/utils/jwt'
 import { User } from '@/domain/entities/user'
 
 const COOKIE_OPTS = { expires: 1, sameSite: 'strict' as const }
@@ -26,7 +27,11 @@ export const authService = {
   getCurrentUser(): User | null {
     try {
       const raw = Cookies.get('user')
-      return raw ? (JSON.parse(raw) as User) : null
+      const token = Cookies.get('token')
+      if (!raw || !token) return null
+      const user = JSON.parse(raw) as User
+      const payload = decodeJwt(token)
+      return { ...user, role: payload?.role ?? 'user' }
     } catch {
       return null
     }

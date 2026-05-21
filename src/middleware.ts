@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { decodeJwt } from '@/infrastructure/utils/jwt'
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value
-  const userRaw = request.cookies.get('user')?.value
   const { pathname } = request.nextUrl
 
   const isAuthenticated = !!token
@@ -24,12 +24,8 @@ export function middleware(request: NextRequest) {
   }
 
   if (isAuthenticated && isAdminPage) {
-    try {
-      const user = userRaw ? JSON.parse(userRaw) : null
-      if (user?.role !== 'admin') {
-        return NextResponse.redirect(new URL('/dashboard', request.url))
-      }
-    } catch {
+    const payload = decodeJwt(token!)
+    if (payload?.role !== 'admin') {
       return NextResponse.redirect(new URL('/dashboard', request.url))
     }
   }
