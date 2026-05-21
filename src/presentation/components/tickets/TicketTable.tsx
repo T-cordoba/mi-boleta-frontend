@@ -10,6 +10,7 @@ import styles from './TicketTable.module.css'
 interface Props {
   tickets: Ticket[]
   loading: boolean
+  pageSize?: number
   wrapperRef?: RefObject<HTMLDivElement | null>
   onView: (ticket: Ticket) => void
   onEdit: (ticket: Ticket) => void
@@ -30,12 +31,12 @@ function formatAmount(amount?: number | null) {
   return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount)
 }
 
-export function TicketTable({ tickets, loading, wrapperRef, onView, onEdit, onDelete, showOwner }: Props) {
+export function TicketTable({ tickets, loading, pageSize = 10, wrapperRef, onView, onEdit, onDelete, showOwner }: Props) {
   if (loading) {
     return (
       <div className={styles.loadingWrapper}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className={styles.skeletonRow} />
+        {Array.from({ length: pageSize }).map((_, i) => (
+          <div key={i} className={styles.skeletonRow} style={{ animationDelay: `${i * 0.1}s` }} />
         ))}
       </div>
     )

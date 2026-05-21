@@ -68,6 +68,7 @@ export default function TicketsPage() {
         <TicketTable
           tickets={result.tickets}
           loading={loading}
+          pageSize={filters.pageSize}
           wrapperRef={tableRef}
           onView={setViewTicket}
           onEdit={setEditTicket}

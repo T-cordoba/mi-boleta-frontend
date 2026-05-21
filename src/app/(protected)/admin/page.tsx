@@ -38,6 +38,7 @@ export default function AdminPage() {
         <TicketTable
           tickets={result.tickets}
           loading={loading}
+          pageSize={filters.pageSize}
           wrapperRef={tableRef}
           onView={setViewTicket}
           onEdit={() => {}}
