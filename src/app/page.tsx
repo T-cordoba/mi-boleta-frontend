@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Ticket, ShieldCheck, Bell, Search } from 'lucide-react'
+import { ThemeToggle } from '@/presentation/components/ui/ThemeToggle'
 import styles from './page.module.css'
 
 const FEATURES = [
@@ -37,6 +38,7 @@ export default function LandingPage() {
           <span className={styles.navName}>MiBoleta</span>
         </div>
         <div className={styles.navActions}>
+          <ThemeToggle />
           <Link href="/login" className={styles.navLink}>Iniciar sesión</Link>
           <Link href="/register" className={styles.navCta}>Crear cuenta</Link>
         </div>

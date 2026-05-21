@@ -75,12 +75,63 @@
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.65);
 }
 
+[data-theme="light"] {
+  /* Backgrounds — lavanda saturada como base, blanco como superficie elevada */
+  --bg-primary: #e8eaff;
+  --bg-secondary: #eff0ff;
+  --bg-tertiary: #f6f7ff;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-glass: rgba(255, 255, 255, 0.52);
+  --bg-glass-hover: rgba(255, 255, 255, 0.74);
+  --bg-input: rgba(255, 255, 255, 0.9);
+  --bg-sidebar: rgba(243, 244, 255, 0.97);
+
+  /* Borders */
+  --border: rgba(99, 102, 241, 0.22);
+  --border-subtle: rgba(99, 102, 241, 0.1);
+  --border-focus: rgba(99, 102, 241, 0.6);
+
+  /* Text — índigo profundo para contraste real */
+  --text-primary: #1e1b4b;
+  --text-secondary: #44416e;
+  --text-muted: #8480b0;
+
+  /* Brand */
+  --primary-light: rgba(99, 102, 241, 0.1);
+  --primary-glow: 0 0 28px rgba(99, 102, 241, 0.22);
+  --primary-glow-sm: 0 0 12px rgba(99, 102, 241, 0.14);
+
+  /* Status */
+  --success-bg: rgba(16, 185, 129, 0.1);
+  --success-border: rgba(16, 185, 129, 0.22);
+  --warning-bg: rgba(245, 158, 11, 0.1);
+  --warning-border: rgba(245, 158, 11, 0.22);
+  --danger-bg: rgba(239, 68, 68, 0.1);
+  --danger-border: rgba(239, 68, 68, 0.22);
+  --info-bg: rgba(59, 130, 246, 0.1);
+  --info-border: rgba(59, 130, 246, 0.22);
+
+  /* Shadows — tintadas en índigo, dan profundidad a los cards blancos */
+  --shadow-sm: 0 2px 8px rgba(79, 70, 229, 0.1), 0 1px 3px rgba(79, 70, 229, 0.06);
+  --shadow-md: 0 4px 20px rgba(79, 70, 229, 0.14), 0 2px 6px rgba(79, 70, 229, 0.08);
+  --shadow-lg: 0 8px 40px rgba(79, 70, 229, 0.2), 0 4px 12px rgba(79, 70, 229, 0.1);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  color-scheme: dark;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
 }
 
 html,

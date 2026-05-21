@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LogOut, ChevronDown, Shield, LayoutDashboard, Ticket, ShieldCheck, Menu, X } from 'lucide-react'
 import { useAuthContext } from '@/presentation/providers/AuthProvider'
+import { ThemeToggle } from '@/presentation/components/ui/ThemeToggle'
 import styles from './Navbar.module.css'
 
 const NAV_ITEMS = [
@@ -58,6 +59,7 @@ export function Navbar() {
         </div>
 
         <div className={styles.right} ref={ref}>
+          <ThemeToggle />
           <button
             className={styles.menuBtn}
             onClick={() => setMobileOpen((v) => !v)}

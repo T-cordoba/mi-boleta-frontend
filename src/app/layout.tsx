@@ -1,37 +1,27 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from '@/presentation/providers/AuthProvider'
+import { ThemeProvider, type Theme } from '@/presentation/providers/ThemeProvider'
 
 export const metadata: Metadata = {
   title: 'MiBoleta — Gestiona tus sorteos',
   description: '¿Y si sí me lo gané? Registra y organiza todas tus boletas y sorteos.',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+  const theme = (cookieStore.get('theme')?.value ?? 'dark') as Theme
+
   return (
-    <html lang="es">
+    <html lang="es" data-theme={theme}>
       <body>
-        <AuthProvider>
-          {children}
-          <ToastContainer
-            position="top-right"
-            autoClose={3500}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            pauseOnHover
-            theme="dark"
-            toastStyle={{
-              background: 'var(--bg-tertiary)',
-              border: '1px solid var(--border)',
-              borderRadius: 'var(--radius-md)',
-              color: 'var(--text-primary)',
-              fontSize: '13px',
-            }}
-          />
-        </AuthProvider>
+        <ThemeProvider initial={theme}>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
