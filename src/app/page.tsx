@@ -38,11 +38,13 @@ export default function LandingPage() {
           <span className={styles.navName}>MiBoleta</span>
         </div>
         <div className={styles.navActions}>
-          <ThemeToggle />
           <Link href="/login" className={styles.navLink}>Iniciar sesión</Link>
           <Link href="/register" className={styles.navCta}>Crear cuenta</Link>
         </div>
       </header>
+      <div className={styles.themeToggle}>
+        <ThemeToggle />
+      </div>
 
       {/* Hero */}
       <section className={styles.hero}>

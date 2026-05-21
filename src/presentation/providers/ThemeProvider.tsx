@@ -22,8 +22,10 @@ export function ThemeProvider({ initial, children }: { initial: Theme; children:
 
   function toggleTheme() {
     const next: Theme = theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.classList.add('theme-transitioning')
     Cookies.set('theme', next, { expires: 365, sameSite: 'lax' })
     setTheme(next)
+    setTimeout(() => document.documentElement.classList.remove('theme-transitioning'), 350)
   }
 
   return (

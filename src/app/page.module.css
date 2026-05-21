@@ -233,6 +233,13 @@
 }
 
 /* Footer */
+.themeToggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+}
+
 .footer {
   padding: 20px;
   font-size: 12px;
