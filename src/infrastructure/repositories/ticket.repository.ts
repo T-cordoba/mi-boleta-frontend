@@ -28,8 +28,8 @@ function buildQuery(filters: Partial<TicketFilters>): string {
 }
 
 export const ticketRepository = {
-  getAll: (filters: Partial<TicketFilters>) =>
-    api.get<TicketsResponse>(`/tickets${buildQuery(filters)}`),
+  getAll: (filters: Partial<TicketFilters>, signal?: AbortSignal) =>
+    api.get<TicketsResponse>(`/tickets${buildQuery(filters)}`, { signal }),
 
   getById: (id: string) => api.get<TicketResponse>(`/tickets/${id}`),
 
@@ -40,6 +40,6 @@ export const ticketRepository = {
 
   delete: (id: string) => api.delete<void>(`/tickets/${id}`),
 
-  getAllAdmin: (filters: Partial<TicketFilters> & { userId?: string }) =>
-    api.get<TicketsResponse>(`/admin/tickets${buildQuery(filters)}`),
+  getAllAdmin: (filters: Partial<TicketFilters> & { userId?: string }, signal?: AbortSignal) =>
+    api.get<TicketsResponse>(`/admin/tickets${buildQuery(filters)}`, { signal }),
 }

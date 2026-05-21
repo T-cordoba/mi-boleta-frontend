@@ -46,7 +46,7 @@ export default function AdminPage() {
         />
       </div>
 
-      <Pagination meta={result.meta} onPage={(page) => { tableRef.current?.scrollTo({ top: 0 }); applyFilters({ page }) }} />
+      <Pagination meta={{ ...result.meta, page: filters.page }} onPage={(page) => { tableRef.current?.scrollTo({ top: 0 }); applyFilters({ page }) }} />
 
       <TicketDetailModal ticket={viewTicket} onClose={() => setViewTicket(null)} />
     </div>

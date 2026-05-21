@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { toast } from 'react-toastify'
 import { ticketService, TicketsResult } from '@/application/services/ticket.service'
 import { TicketFilters } from '@/domain/entities/ticket'
@@ -14,27 +14,31 @@ export function useAdmin() {
   })
   const [filters, setFilters] = useState<TicketFilters>(DEFAULT_FILTERS)
   const [loading, setLoading] = useState(false)
+  const filtersRef = useRef<TicketFilters>(DEFAULT_FILTERS)
+  const abortRef = useRef<AbortController | null>(null)
 
-  const fetch = useCallback(async (f: TicketFilters = filters) => {
+  const fetch = useCallback(async (f: TicketFilters = filtersRef.current) => {
+    abortRef.current?.abort()
+    const controller = new AbortController()
+    abortRef.current = controller
+
     setLoading(true)
     try {
-      const data = await ticketService.getAdminTickets(f)
+      const data = await ticketService.getAdminTickets(f, controller.signal)
       setResult(data)
     } catch (e) {
-      toast.error((e as Error).message)
+      if ((e as Error).name !== 'AbortError') toast.error((e as Error).message)
     } finally {
-      setLoading(false)
+      if (!controller.signal.aborted) setLoading(false)
     }
-  }, [filters])
+  }, [])
 
-  const applyFilters = useCallback(
-    (partial: Partial<TicketFilters>) => {
-      const next = { ...filters, ...partial, page: partial.page ?? 1 }
-      setFilters(next)
-      fetch(next)
-    },
-    [filters, fetch],
-  )
+  const applyFilters = useCallback((partial: Partial<TicketFilters>) => {
+    const next = { ...filtersRef.current, ...partial, page: partial.page ?? 1 }
+    filtersRef.current = next
+    setFilters(next)
+    fetch(next)
+  }, [fetch])
 
   return { result, filters, loading, fetch, applyFilters }
 }

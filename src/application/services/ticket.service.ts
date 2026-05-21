@@ -13,8 +13,8 @@ export interface TicketsResult {
 }
 
 export const ticketService = {
-  async getTickets(filters: Partial<TicketFilters>): Promise<TicketsResult> {
-    const res = await ticketRepository.getAll(filters)
+  async getTickets(filters: Partial<TicketFilters>, signal?: AbortSignal): Promise<TicketsResult> {
+    const res = await ticketRepository.getAll(filters, signal)
     return { tickets: res.data, meta: res.meta }
   },
 
@@ -39,8 +39,9 @@ export const ticketService = {
 
   async getAdminTickets(
     filters: Partial<TicketFilters> & { userId?: string },
+    signal?: AbortSignal,
   ): Promise<TicketsResult> {
-    const res = await ticketRepository.getAllAdmin(filters)
+    const res = await ticketRepository.getAllAdmin(filters, signal)
     return { tickets: res.data, meta: res.meta }
   },
 }

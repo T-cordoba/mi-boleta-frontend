@@ -76,7 +76,7 @@ export default function TicketsPage() {
       </div>
 
       <div className="anim-fade-up" style={{ animationDelay: '0.22s' }}>
-        <Pagination meta={result.meta} onPage={(page) => { tableRef.current?.scrollTo({ top: 0 }); applyFilters({ page }) }} />
+        <Pagination meta={{ ...result.meta, page: filters.page }} onPage={(page) => { tableRef.current?.scrollTo({ top: 0 }); applyFilters({ page }) }} />
       </div>
 
       {/* Crear — con protección dirty */}
