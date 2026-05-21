@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Plus } from 'lucide-react'
 import { Button } from '@/presentation/components/ui/Button'
 import { Modal } from '@/presentation/components/ui/Modal'
@@ -17,6 +18,8 @@ import styles from './page.module.css'
 
 export default function TicketsPage() {
   const { result, filters, loading, fetch, applyFilters, create, update, remove } = useTickets()
+  const searchParams = useSearchParams()
+  const router = useRouter()
 
   const tableRef = useRef<HTMLDivElement>(null)
   const [createOpen, setCreateOpen] = useState(false)
@@ -26,6 +29,13 @@ export default function TicketsPage() {
   const [deleteLoading, setDeleteLoading] = useState(false)
 
   useEffect(() => { fetch() }, [fetch])
+
+  useEffect(() => {
+    if (searchParams.get('new') === '1') {
+      setCreateOpen(true)
+      router.replace('/tickets')
+    }
+  }, [searchParams, router])
 
   async function handleCreate(dto: CreateTicketDto) {
     const ticket = await create(dto)
