@@ -200,6 +200,8 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 12px;
   transition: border-color var(--transition-slow), box-shadow var(--transition-slow);
 }
@@ -224,6 +226,12 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .featureDesc {
@@ -256,6 +264,27 @@
 }
 
 @media (max-width: 640px) {
+  .featureCard {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .featureCard:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .featureCard:nth-child(even) .featureText {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .featureIcon {
+    flex-shrink: 0;
+  }
+
   .nav {
     padding: 16px 20px;
   }

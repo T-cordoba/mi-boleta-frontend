@@ -75,8 +75,10 @@ export default function LandingPage() {
         {FEATURES.map(({ icon, title, desc }) => (
           <div key={title} className={`${styles.featureCard} anim-fade-up`}>
             <div className={styles.featureIcon}>{icon}</div>
-            <h3 className={styles.featureTitle}>{title}</h3>
-            <p className={styles.featureDesc}>{desc}</p>
+            <div className={styles.featureText}>
+              <h3 className={styles.featureTitle}>{title}</h3>
+              <p className={styles.featureDesc}>{desc}</p>
+            </div>
           </div>
         ))}
       </section>
